@@ -6,6 +6,11 @@ Introduction
 
 Tablify Your Image is a python script that converts images into HTML tables.
 
+Usage
+-----
+
+python TablifyYourImage.py -i <path_to_image>
+
 License
 -------
 
