@@ -58,7 +58,7 @@ def main(argv):
             
             # Get the color of the corresponding pixel
             r, g, b = rgb_im.getpixel((x, y))
-            f.write('<td width="1" height="1" bgcolor="' + '#%02x%02x%02x' % (r, g, b)  + '" colspan="1">&nbsp;</td>')
+            f.write('<td width="1" height="1" colspan="1" style="background-color: ' + '#%02x%02x%02x' % (r, g, b)  + ';">&nbsp;</td>')
     
             # If it is the last column, close the tr tag
             if x == width - 1:
