@@ -34,8 +34,8 @@ def main(argv):
     # Open the image
     im = Image.open(path)
     
-    # Convert to RGB
-    rgb_im = im.convert('RGB')
+    # Convert to RGBA
+    rgba_im = im.convert('RGBA')
     
     # Get the width and height of the image (in pixels)
     width, height = im.size
@@ -57,8 +57,8 @@ def main(argv):
                 f.write('<tr>')
             
             # Get the color of the corresponding pixel
-            r, g, b = rgb_im.getpixel((x, y))
-            f.write('<td width="1" height="1" colspan="1" style="background-color: ' + '#%02x%02x%02x' % (r, g, b)  + ';">&nbsp;</td>')
+            r, g, b, a = rgba_im.getpixel((x, y))
+            f.write('<td width="1" height="1" colspan="1" style="background-color: ' + 'rgba(%d,%d,%d,%d)' % (r, g, b, 1.0)  + ';">&nbsp;</td>')
     
             # If it is the last column, close the tr tag
             if x == width - 1:
