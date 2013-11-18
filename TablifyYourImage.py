@@ -58,7 +58,8 @@ def main(argv):
             
             # Get the color of the corresponding pixel
             r, g, b, a = rgba_im.getpixel((x, y))
-            f.write('<td width="1" height="1" colspan="1" style="background-color: ' + 'rgba(%d,%d,%d,%d)' % (r, g, b, 1.0)  + ';">&nbsp;</td>')
+            
+            f.write('<td width="1" height="1" colspan="1" style="background-color: ' + 'rgba(%d,%d,%d,%f)' % (r, g, b, a / 255.0)  + ';">&nbsp;</td>')
     
             # If it is the last column, close the tr tag
             if x == width - 1:
