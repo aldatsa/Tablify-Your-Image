@@ -9,11 +9,13 @@ def how_to_use():
     print 'Usage: python TablifyYourImage.py -i <path_to_image>'
 
 def main(argv):
+    version_number = "0.1.0"
+    
     # Path to the image
     path = ""
 
     try:
-        opts, args = getopt.getopt(argv,"hi:o:")
+        opts, args = getopt.getopt(argv,"vhi:o:")
         if not opts:
             how_to_use()
             sys.exit(2)
@@ -22,10 +24,13 @@ def main(argv):
         sys.exit(2)
     
     for opt, arg in opts:
-        if opt == '-h':
+        if opt == '-v':
+            print version_number
+            sys.exit()
+        elif opt == '-h':
             how_to_use()
             sys.exit()
-        elif opt == "-i":
+        elif opt == '-i':
             path = arg
 
     # Get the name of the image from the path -> we are going to use it as the name of the new html file
