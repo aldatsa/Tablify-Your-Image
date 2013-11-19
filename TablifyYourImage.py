@@ -3,10 +3,8 @@
 
 from PIL import Image
 import os
-import sys, getopt
-
-def how_to_use():
-    print 'Usage: python TablifyYourImage.py -i <path_to_image>'
+import sys
+import argparse
 
 def main(argv):
     version_number = "0.1.0"
@@ -14,24 +12,22 @@ def main(argv):
     # Path to the image
     path = ""
 
-    try:
-        opts, args = getopt.getopt(argv,"vhi:o:")
-        if not opts:
-            how_to_use()
-            sys.exit(2)
-    except getopt.GetoptError:
-        how_to_use()
-        sys.exit(2)
+    # Create a parser to parse the arguments
+    parser = argparse.ArgumentParser()
     
-    for opt, arg in opts:
-        if opt == '-v':
-            print version_number
-            sys.exit()
-        elif opt == '-h':
-            how_to_use()
-            sys.exit()
-        elif opt == '-i':
-            path = arg
+    # If this argument is set the value of the variable version is true else false
+    parser.add_argument("-v", "--version", help="print the version number and exit", action='store_true')
+    
+    parser.add_argument("-i", "--input", help="the path to the file that you want to tablify")
+    
+    # Parse the arguments
+    args = parser.parse_args()
+    
+    if args.version:
+        print version_number
+        sys.exit()
+    elif args.input:
+        path = args.input
 
     # Get the name of the image from the path -> we are going to use it as the name of the new html file
     name = os.path.splitext(os.path.basename(path))[0]
