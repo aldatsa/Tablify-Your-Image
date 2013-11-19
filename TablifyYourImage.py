@@ -20,7 +20,7 @@ def main(argv):
     
     # If this argument is set the value of the variable version is true else false
     parser.add_argument("-v", "--version", help="print the version number and exit", action='store_true')
-    parser.add_argument("-s", "--stdoutput", help="print the html to the standard output", action='store_true')
+    parser.add_argument("-s", "--stdout", help="print the html to the standard output", action='store_true')
     parser.add_argument("-x", "--width", type=int, default=1, help="the width of each td in pixels (default = 1)")
     parser.add_argument("-y", "--height", type=int, default=1, help="the height of each td in pixels (default = 1)")
     parser.add_argument("-i", "--input", help="the path to the file that you want to tablify")
@@ -75,7 +75,7 @@ def main(argv):
     table = table + '</tbody></table>'
     
     # If the user wants to print the table to the standard output
-    if args.stdoutput:
+    if args.stdout:
         print table
     else:
         # Create the html file
