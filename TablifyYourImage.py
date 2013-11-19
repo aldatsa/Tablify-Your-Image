@@ -12,12 +12,15 @@ def main(argv):
     # Path to the image
     path = ""
 
+    # A variable to store the string that we are going to create
+    table = ""
+    
     # Create a parser to parse the arguments
     parser = argparse.ArgumentParser()
     
     # If this argument is set the value of the variable version is true else false
     parser.add_argument("-v", "--version", help="print the version number and exit", action='store_true')
-    
+    parser.add_argument("-s", "--stdoutput", help="print the html to the standard output", action='store_true')
     parser.add_argument("-i", "--input", help="the path to the file that you want to tablify")
     
     # Parse the arguments
@@ -41,39 +44,46 @@ def main(argv):
     # Get the width and height of the image (in pixels)
     width, height = im.size
     
-    # Create the html file
-    f = open(name + '.html', 'w')
-    
     # Create the table
-    f.write('<table cellspacing="0" cellpadding="0" border="0" style="margin-left: auto; margin-right: auto; font-size:0px;">\n')
+    table = table + '<table cellspacing="0" cellpadding="0" border="0" style="margin-left: auto; margin-right: auto; font-size:0px;">\n'
     
     # Create the body of the table
-    f.write('<tbody>\n')
+    table = table + '<tbody>\n'
     
     # Create a <td> for each pixel of the image with the corresponding color
     for y in range(0, height):
         for x in range(0, width):
             # If it is the first column (0st), create an tr tag
             if x == 0:
-                f.write('<tr>')
+                table = table + '<tr>'
             
             # Get the color of the corresponding pixel
             r, g, b, a = rgba_im.getpixel((x, y))
             
-            f.write('<td width="1" height="1" colspan="1" style="background-color: ' + 'rgba(%d,%d,%d,%f)' % (r, g, b, a / 255.0)  + ';">&nbsp;</td>')
+            table = table + '<td width="1" height="1" colspan="1" style="background-color: ' + 'rgba(%d,%d,%d,%f)' % (r, g, b, a / 255.0)  + ';">&nbsp;</td>'
     
             # If it is the last column, close the tr tag
             if x == width - 1:
-                f.write('</tr>')
+                table = table + '</tr>'
     
             # Add a new line
-            f.write('\n')
+            table = table + '\n'
     
     # Close the body of the table and the table itself
-    f.write('</tbody></table>')
+    table = table + '</tbody></table>'
     
-    # Close the html file
-    f.close()
+    # If the user wants to print the table to the standard output
+    if args.stdoutput:
+        print table
+    else:
+        # Create the html file
+        f = open(name + '.html', 'w')
+        
+        # Write the table to the html file
+        f.write(table)
+        
+        # Close the html file
+        f.close()
 
 if __name__ == "__main__":
    main(sys.argv[1:])
