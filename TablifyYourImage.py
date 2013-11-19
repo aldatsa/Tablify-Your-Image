@@ -60,7 +60,7 @@ def main(argv):
             # Get the color of the corresponding pixel
             r, g, b, a = rgba_im.getpixel((x, y))
             
-            table = table + '<td width="1" height="1" colspan="1" style="background-color: ' + 'rgba(%d,%d,%d,%f)' % (r, g, b, a / 255.0)  + ';">&nbsp;</td>'
+            table = table + '<td width="1" height="1" colspan="1" style="background-color: ' + 'rgba(%d,%d,%d,%.1f)' % (r, g, b, a / 255.0)  + ';">&nbsp;</td>'
     
             # If it is the last column, close the tr tag
             if x == width - 1:
