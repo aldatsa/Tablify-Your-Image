@@ -10,12 +10,12 @@ Usage
 -----
 
 ```
-usage: TablifyYourImage.py [-h] [-v] [-s] [-x WIDTH] [-y HEIGHT] [-i INPUT]
+usage: python TablifyYourImage.py [-h] [-v] [-s] [-x WIDTH] [-y HEIGHT] [-i INPUT]
 
 optional arguments:
   -h, --help                    show this help message and exit
   -v, --version                 print the version number and exit
-  -s, --stdout                  print the html to the standard output
+  -s, --stdout                  print the table to the standard output
   -x WIDTH, --width WIDTH       the width of each td in pixels (default = 1)
   -y HEIGHT, --height HEIGHT    the height of each td in pixels (default = 1)
   -i INPUT, --input INPUT       the path to the file that you want to tablify
