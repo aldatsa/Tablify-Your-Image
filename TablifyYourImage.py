@@ -7,7 +7,7 @@ import sys
 import argparse
 
 def main(argv):
-    version_number = "0.1.0"
+    version_number = "0.2.0"
     
     # Path to the image
     path = ""
@@ -24,6 +24,7 @@ def main(argv):
     parser.add_argument("-x", "--width", type=int, default=1, help="the width of each td in pixels (default = 1)")
     parser.add_argument("-y", "--height", type=int, default=1, help="the height of each td in pixels (default = 1)")
     parser.add_argument("-i", "--input", help="the path to the file that you want to tablify")
+    parser.add_argument("-o", "--output", help="the path to the output file. If omitted, the name of the input file is used. It doesn't work when the --stdout option is specified.")
     
     # Parse the arguments
     args = parser.parse_args()
@@ -34,8 +35,12 @@ def main(argv):
     elif args.input:
         path = args.input
 
-    # Get the name of the image from the path -> we are going to use it as the name of the new html file
-    name = os.path.splitext(os.path.basename(path))[0]
+    if args.output:
+        # Use the name supplied by the user as the name of the new html file.
+        name = args.output
+    else:
+        # Get the name of the image from the path -> we are going to use it as the name of the new html file
+        name = os.path.splitext(os.path.basename(path))[0] + '.html'
     
     # Open the image
     im = Image.open(path)
@@ -79,7 +84,7 @@ def main(argv):
         print table
     else:
         # Create the html file
-        f = open(name + '.html', 'w')
+        f = open(name, 'w')
         
         # Write the table to the html file
         f.write(table)
