@@ -29,12 +29,18 @@ def main(argv):
     # Parse the arguments
     args = parser.parse_args()
     
+    # Print the version number and exit
     if args.version:
         print version_number
         sys.exit()
-    elif args.input:
+    
+    # If the user set a value for the --input argument
+    if args.input:
         path = args.input
-
+    else:
+        print "You didn't specify the path of the image that you want to tablify."
+        sys.exit()
+    
     if args.output:
         # Use the name supplied by the user as the name of the new html file.
         name = args.output
