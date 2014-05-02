@@ -7,7 +7,7 @@ import sys
 import argparse
 
 def main(argv):
-    version_number = "0.3.0"
+    __version__ = "0.4.0"
     
     # Path to the image
     path = ""
@@ -19,7 +19,7 @@ def main(argv):
     parser = argparse.ArgumentParser()
     
     # Optional arguments
-    parser.add_argument("-v", "--version", help="print the version number and exit", action='version', version='%(prog)s ' + version_number)
+    parser.add_argument("-v", "--version", help="print the version number and exit", action='version', version='%(prog)s ' + __version__)
     parser.add_argument("-s", "--stdout", help="print the html to the standard output", action='store_true')
     parser.add_argument("-x", "--width", type=int, default=1, help="the width of each td in pixels (default = 1)")
     parser.add_argument("-y", "--height", type=int, default=1, help="the height of each td in pixels (default = 1)")
