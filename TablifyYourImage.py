@@ -19,7 +19,7 @@ def main(argv):
     parser = argparse.ArgumentParser()
     
     # Optional arguments
-    parser.add_argument("-v", "--version", help="print the version number and exit", action='store_true') # If this argument is set the value of the variable version is true else false
+    parser.add_argument("-v", "--version", help="print the version number and exit", action='version', version='%(prog)s ' + version_number)
     parser.add_argument("-s", "--stdout", help="print the html to the standard output", action='store_true')
     parser.add_argument("-x", "--width", type=int, default=1, help="the width of each td in pixels (default = 1)")
     parser.add_argument("-y", "--height", type=int, default=1, help="the height of each td in pixels (default = 1)")
@@ -31,11 +31,6 @@ def main(argv):
     
     # Parse the arguments
     args = parser.parse_args()
-    
-    # Print the version number and exit
-    if args.version:
-        print version_number
-        sys.exit()
     
     # If the user set a value for the --input argument
     if args.input:
