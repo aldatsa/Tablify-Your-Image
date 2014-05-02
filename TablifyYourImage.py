@@ -7,7 +7,7 @@ import sys
 import argparse
 
 def main(argv):
-    version_number = "0.2.0"
+    version_number = "0.3.0"
     
     # Path to the image
     path = ""
@@ -25,6 +25,7 @@ def main(argv):
     parser.add_argument("-y", "--height", type=int, default=1, help="the height of each td in pixels (default = 1)")
     parser.add_argument("-i", "--input", help="the path to the file that you want to tablify")
     parser.add_argument("-o", "--output", help="the path to the output file. If omitted, the name of the input file is used. It doesn't work when the --stdout option is specified.")
+    parser.add_argument("-d", "--id", help="the id of the table")
     
     # Parse the arguments
     args = parser.parse_args()
@@ -48,6 +49,12 @@ def main(argv):
         # Get the name of the image from the path -> we are going to use it as the name of the new html file
         name = os.path.splitext(os.path.basename(path))[0] + '.html'
     
+    id_table = ""
+    
+    # If the user supplied a id, use it to construct the id attribute of the table.
+    if args.id:
+        id_table = 'id="' + args.id + '" '
+    
     # Open the image
     im = Image.open(path)
     
@@ -57,8 +64,8 @@ def main(argv):
     # Get the width and height of the image (in pixels)
     width, height = im.size
     
-    # Create the table
-    table = table + '<table cellspacing="0" cellpadding="0" border="0" style="margin-left: auto; margin-right: auto; font-size:0px;">\n'
+    # Create the table.
+    table = table + '<table ' + id_table + 'cellspacing="0" cellpadding="0" border="0" style="margin-left: auto; margin-right: auto; font-size:0px;">\n'
     
     # Create the body of the table
     table = table + '<tbody>\n'
